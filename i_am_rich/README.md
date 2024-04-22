@@ -18,3 +18,5 @@ samples, guidance on mobile development, and a full API reference.
 ### External Tools
 
 - [App Icons Generator](https://www.appicon.co/)
+- [Vecteezy](https://it.vecteezy.com/)
+- [Icons8](https://icons8.it/)
