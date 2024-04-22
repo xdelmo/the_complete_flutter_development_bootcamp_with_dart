@@ -15,8 +15,7 @@ void main() {
         ),
         body: const Center(
           child: Image(
-            image: NetworkImage(
-                'https://th.bing.com/th/id/OIP.DDsqzQ_y7ee5TGKl0qEi-QHaE8?rs=1&pid=ImgDetMain'),
+            image: AssetImage('images/diamond.png'),
           ),
         ),
       ),
