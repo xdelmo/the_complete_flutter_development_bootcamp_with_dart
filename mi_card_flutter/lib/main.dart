@@ -38,6 +38,27 @@ class MyApp extends StatelessWidget {
                     fontFamily: 'Source Code Pro',
                     letterSpacing: 2.5),
               ),
+              Container(
+                color: Colors.white,
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                padding: EdgeInsets.all(10),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.smartphone,
+                      color: Colors.teal,
+                    ),
+                    SizedBox(width: 10),
+                    Text(
+                      '+39 38099999999',
+                      style: TextStyle(
+                          color: Colors.teal.shade900,
+                          fontFamily: 'Source Code Pro',
+                          fontSize: 15),
+                    )
+                  ],
+                ),
+              )
             ],
           ),
         )),
