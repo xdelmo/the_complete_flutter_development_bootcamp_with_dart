@@ -13,45 +13,33 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.teal,
         body: SafeArea(
-            child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              height: 100,
-              width: 100,
-              color: Colors.red,
-              child: Text("Container 1"),
-            ),
-            Container(
-              height: 100,
-              width: 100,
-              color: Colors.teal,
-              child: Container(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      color: Colors.yellow,
-                    ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      color: Colors.green,
-                    )
-                  ],
-                ),
+            child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage('images/avatar.png'),
               ),
-            ),
-            Container(
-              height: 100,
-              width: 100,
-              color: Colors.blue,
-              child: Text("Container 3"),
-            ),
-          ],
+              Text(
+                'Emanuele Del Monte',
+                style: TextStyle(
+                    fontSize: 30,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Pacifico'),
+              ),
+              Text(
+                'JUNIOR FRONTEND DEVELOPER',
+                style: TextStyle(
+                    fontSize: 10,
+                    color: Colors.teal.shade100,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Source Code Pro',
+                    letterSpacing: 2.5),
+              ),
+            ],
+          ),
         )),
       ),
     );
