@@ -15,12 +15,8 @@ void main() {
           centerTitle: true,
           backgroundColor: Colors.red,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SafeArea(
-              child: Center(
-            child: DicePage(),
-          )),
+        body: SafeArea(
+          child: DicePage(),
         ),
       ),
     ),
@@ -30,22 +26,30 @@ void main() {
 class DicePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: Image.asset(
-            "images/dice1.png",
+    return Center(
+      child: Row(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset(
+                "images/dice1.png",
+              ),
+            ),
           ),
-        ),
-        SizedBox(
-          width: 20,
-        ),
-        Expanded(
-          child: Image.asset(
-            "images/dice2.png",
+          SizedBox(
+            width: 20,
           ),
-        )
-      ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.asset(
+                "images/dice2.png",
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
