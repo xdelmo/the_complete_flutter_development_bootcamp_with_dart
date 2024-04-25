@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
 
 void main() {
@@ -59,31 +58,43 @@ class _DicePageState extends State<DicePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Row(
-        children: [
-          Expanded(
-            child: TextButton(
-              onPressed: () => changeDiceFace(),
-              child: Image.asset(
-                "images/dice$leftDiceNumber.png",
+    return Column(
+      children: [
+        Expanded(
+          child: Row(
+            children: [
+              Expanded(
+                child: TextButton(
+                  onPressed: () => changeDiceFace(),
+                  child: Image.asset(
+                    "images/dice$leftDiceNumber.png",
+                  ),
+                ),
               ),
-            ),
-          ),
-          SizedBox(
-            width: 20,
-          ),
-          Expanded(
-            child: TextButton(
-              onPressed: () => changeDiceFace(),
-              child: Image.asset(
-                "images/dice$rightDiceNumber.png",
+              SizedBox(
+                width: 20,
               ),
-            ),
+              Expanded(
+                child: TextButton(
+                  onPressed: () => changeDiceFace(),
+                  child: Image.asset(
+                    "images/dice$rightDiceNumber.png",
+                  ),
+                ),
+              ),
+            ],
           ),
-          isSameDiceFace ? Text("vinto") : Text('')
-        ],
-      ),
+        ),
+        isSameDiceFace
+            ? Text(
+                'YOU WON!',
+                style: TextStyle(
+                    letterSpacing: 10,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20),
+              )
+            : Text('')
+      ],
     );
   }
 }
