@@ -7,6 +7,12 @@ void main() {
         backgroundColor: Colors.red,
         appBar: AppBar(
           title: Text('Dicee'),
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+          centerTitle: true,
           backgroundColor: Colors.red,
         ),
         body: Padding(
