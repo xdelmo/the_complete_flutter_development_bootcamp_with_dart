@@ -35,6 +35,27 @@ class DicePage extends StatefulWidget {
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 2;
+  bool isSameDiceFace = false;
+
+  void changeDiceFace() {
+    setState(() {
+      leftDiceNumber = getRandomNumberRange(1, 6);
+      rightDiceNumber = getRandomNumberRange(1, 6);
+    });
+    checkSameDiceFace();
+  }
+
+  void checkSameDiceFace() {
+    if (leftDiceNumber == rightDiceNumber) {
+      setState(() {
+        isSameDiceFace = true;
+      });
+    } else {
+      setState(() {
+        isSameDiceFace = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +64,7 @@ class _DicePageState extends State<DicePage> {
         children: [
           Expanded(
             child: TextButton(
-              onPressed: () => (setState(() {
-                leftDiceNumber = getRandomNumberRange(1, 6);
-              })),
+              onPressed: () => changeDiceFace(),
               child: Image.asset(
                 "images/dice$leftDiceNumber.png",
               ),
@@ -56,21 +75,19 @@ class _DicePageState extends State<DicePage> {
           ),
           Expanded(
             child: TextButton(
-              onPressed: () => (setState(() {
-                rightDiceNumber = getRandomNumberRange(1, 6);
-              })),
+              onPressed: () => changeDiceFace(),
               child: Image.asset(
                 "images/dice$rightDiceNumber.png",
               ),
             ),
-          )
+          ),
+          isSameDiceFace ? Text("vinto") : Text('')
         ],
       ),
     );
   }
 }
 
-int getRandomNumberRange(int firstNumber, int secondNumber) {
-  Random random = Random();
-  return random.nextInt(secondNumber) + firstNumber;
+int getRandomNumberRange(int plusNumber, int rangeNumber) {
+  return Random().nextInt(rangeNumber) + plusNumber;
 }
