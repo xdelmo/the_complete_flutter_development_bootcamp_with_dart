@@ -7,6 +7,13 @@ class Quizzler extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.black,
+          title: Text('Quizzler'),
+          titleTextStyle:
+              TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        ),
         backgroundColor: Colors.grey.shade900,
         body: SafeArea(
           child: Padding(
@@ -25,19 +32,83 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  List<Icon> scoreKeeper = [];
+
+  List<String> questions = [
+    'You can lead a cow down stairs but not up stairs.',
+    'Approximately one quarter of human bones are in the feet',
+    'A slug\'s blood is green.'
+  ];
+  List<bool> answers = [false, true, true];
+
+  int questionNumber = 0;
+
+  Icon buildIcon(bool icon) {
+    return icon
+        ? Icon(Icons.check, color: Colors.green)
+        : Icon(Icons.close, color: Colors.red);
+  }
+
+  void _pressButton(bool userAnswer) {
+    setState(() {
+      if (answers[questionNumber] == userAnswer) {
+        scoreKeeper.add(buildIcon(true));
+      } else {
+        scoreKeeper.add(buildIcon(false));
+      }
+      if (questionNumber < questions.length - 1) {
+        questionNumber++;
+      } else {
+        // _resetQuizzler();
+      }
+    });
+  }
+
+  void _resetQuizzler() {
+    setState(() {
+      questionNumber = 0;
+      scoreKeeper = [];
+    });
+  }
+/*
+question1: 'You can lead a cow down stairs but not up stairs.', false,
+question2: 'Approximately one quarter of human bones are in the feet.', true,
+question3: 'A slug\'s blood is green.', true,
+*/
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(
+              height: 50,
+            ),
+            TextButton(
+              onPressed: () {
+                _resetQuizzler();
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
+              child: Icon(
+                Icons.restore,
+                color: Colors.white,
+              ),
+            ),
+          ],
+        ),
         Expanded(
           flex: 5,
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questions[questionNumber],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -62,7 +133,7 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked true.
+                _pressButton(true);
               },
             ),
           ),
@@ -80,19 +151,15 @@ class _QuizPageState extends State<QuizPage> {
                 ),
               ),
               onPressed: () {
-                //The user picked false.
+                _pressButton(false);
               },
             ),
           ),
         ),
-        //TODO: Add a Row here as your score keeper
+        Row(
+          children: scoreKeeper,
+        ),
       ],
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
