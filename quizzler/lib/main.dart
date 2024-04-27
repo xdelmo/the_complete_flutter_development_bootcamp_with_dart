@@ -33,6 +33,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
+  bool isGameOver = false;
   List<Icon> scoreKeeper = [];
 
   List<Question> questionBank = [
@@ -60,13 +61,14 @@ class _QuizPageState extends State<QuizPage> {
       if (questionNumber < questionBank.length - 1) {
         questionNumber++;
       } else {
-        // _resetQuizzler();
+        isGameOver = true;
       }
     });
   }
 
   void _resetQuizzler() {
     setState(() {
+      isGameOver = false;
       questionNumber = 0;
       scoreKeeper = [];
     });
@@ -133,9 +135,11 @@ question3: 'A slug\'s blood is green.', true,
                   fontSize: 20.0,
                 ),
               ),
-              onPressed: () {
-                _pressButton(true);
-              },
+              onPressed: !isGameOver
+                  ? () {
+                      _pressButton(true);
+                    }
+                  : null,
             ),
           ),
         ),
@@ -151,9 +155,11 @@ question3: 'A slug\'s blood is green.', true,
                   color: Colors.white,
                 ),
               ),
-              onPressed: () {
-                _pressButton(false);
-              },
+              onPressed: !isGameOver
+                  ? () {
+                      _pressButton(false);
+                    }
+                  : null,
             ),
           ),
         ),
