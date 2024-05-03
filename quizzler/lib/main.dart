@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quizzler/question.dart';
+import 'package:quizzler/quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -36,13 +38,6 @@ class _QuizPageState extends State<QuizPage> {
   bool isGameOver = false;
   List<Icon> scoreKeeper = [];
 
-  List<Question> questionBank = [
-    Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
-    Question(
-        q: 'Approximately one quarter of human bones are in the feet', a: true),
-    Question(q: 'A slug\'s blood is green.', a: true)
-  ];
-
   int questionNumber = 0;
 
   Icon buildIcon(bool icon) {
@@ -53,12 +48,12 @@ class _QuizPageState extends State<QuizPage> {
 
   void _pressButton(bool userAnswer) {
     setState(() {
-      if (questionBank[questionNumber].questionAnswer == userAnswer) {
+      if (quizBrain.questionBank[questionNumber].questionAnswer == userAnswer) {
         scoreKeeper.add(buildIcon(true));
       } else {
         scoreKeeper.add(buildIcon(false));
       }
-      if (questionNumber < questionBank.length - 1) {
+      if (questionNumber < quizBrain.questionBank.length - 1) {
         questionNumber++;
       } else {
         isGameOver = true;
@@ -73,11 +68,6 @@ class _QuizPageState extends State<QuizPage> {
       scoreKeeper = [];
     });
   }
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
 
   @override
   Widget build(BuildContext context) {
@@ -111,7 +101,7 @@ question3: 'A slug\'s blood is green.', true,
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questionBank[questionNumber].questionText,
+                quizBrain.questionBank[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
