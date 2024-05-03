@@ -38,8 +38,6 @@ class _QuizPageState extends State<QuizPage> {
   bool isGameOver = false;
   List<Icon> scoreKeeper = [];
 
-  int questionNumber = 0;
-
   Icon buildIcon(bool icon) {
     return icon
         ? Icon(Icons.check, color: Colors.green)
@@ -48,23 +46,19 @@ class _QuizPageState extends State<QuizPage> {
 
   void _pressButton(bool userAnswer) {
     setState(() {
-      if (quizBrain.questionBank[questionNumber].questionAnswer == userAnswer) {
+      if (quizBrain.getCorrectAnswer() == userAnswer) {
         scoreKeeper.add(buildIcon(true));
       } else {
         scoreKeeper.add(buildIcon(false));
       }
-      if (questionNumber < quizBrain.questionBank.length - 1) {
-        questionNumber++;
-      } else {
-        isGameOver = true;
-      }
+      quizBrain.nextQuestion();
     });
   }
 
   void _resetQuizzler() {
     setState(() {
       isGameOver = false;
-      questionNumber = 0;
+      quizBrain.setQuestionNumber(0);
       scoreKeeper = [];
     });
   }
@@ -101,7 +95,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.questionBank[questionNumber].questionText,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
