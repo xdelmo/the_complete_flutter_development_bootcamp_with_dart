@@ -44,9 +44,9 @@ class _QuizPageState extends State<QuizPage> {
         : Icon(Icons.close, color: Colors.red);
   }
 
-  void _pressButton(bool userAnswer) {
+  void _checkAnswer(bool userPickedAnswer) {
     setState(() {
-      if (quizBrain.getCorrectAnswer() == userAnswer) {
+      if (quizBrain.getCorrectAnswer() == userPickedAnswer) {
         scoreKeeper.add(buildIcon(true));
       } else {
         scoreKeeper.add(buildIcon(false));
@@ -121,7 +121,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: !isGameOver
                   ? () {
-                      _pressButton(true);
+                      _checkAnswer(true);
                     }
                   : null,
             ),
@@ -141,7 +141,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: !isGameOver
                   ? () {
-                      _pressButton(false);
+                      _checkAnswer(false);
                     }
                   : null,
             ),
