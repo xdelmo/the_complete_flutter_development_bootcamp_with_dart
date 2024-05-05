@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quizzler/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -46,19 +47,42 @@ class _QuizPageState extends State<QuizPage> {
 
   void _checkAnswer(bool userPickedAnswer) {
     setState(() {
-      if (quizBrain.getCorrectAnswer() == userPickedAnswer) {
-        scoreKeeper.add(buildIcon(true));
+      if (!quizBrain.isFinished()) {
+        if (quizBrain.getCorrectAnswer() == userPickedAnswer) {
+          scoreKeeper.add(buildIcon(true));
+        } else {
+          scoreKeeper.add(buildIcon(false));
+        }
+        quizBrain.nextQuestion();
       } else {
-        scoreKeeper.add(buildIcon(false));
+        Alert(
+          context: context,
+          type: AlertType.info,
+          title: "QUIZ IS OVER",
+          desc: "Try again!",
+          buttons: [
+            DialogButton(
+              color: Colors.blue.shade500,
+              child: Text(
+                "RESTART",
+                style: TextStyle(color: Colors.white, fontSize: 10),
+              ),
+              onPressed: () {
+                Navigator.pop(context);
+                _resetQuizzler();
+              },
+              width: 120,
+            )
+          ],
+        ).show();
       }
-      quizBrain.nextQuestion();
     });
   }
 
   void _resetQuizzler() {
     setState(() {
       isGameOver = false;
-      quizBrain.setQuestionNumber(0);
+      quizBrain.reset();
       scoreKeeper = [];
     });
   }
