@@ -1,10 +1,7 @@
-//TODO: Step 6 - import the story.dart file into this file.
 import 'package:destini_challenge_starting/story.dart';
 
-//TODO: Step 5 - Create a new class called StoryBrain.
 class StoryBrain {}
 
-//TODO: Step 7 - Uncomment the lines below to include storyData as a private property in StoryBrain. Hint: You might need to change something in story.dart to make this work.
 List<Story> _storyData = [
   Story(
       storyTitle:
@@ -37,8 +34,6 @@ List<Story> _storyData = [
       choice2: '')
 ];
 
-//TODO: Step 23 - Use the storyNumber property inside getStory(), getChoice1() and getChoice2() so that it gets the updated story and choices rather than always just the first (0th) one.
-
 String getStory() {
   return _storyData[storyNumber].storyTitle;
 }
@@ -55,7 +50,6 @@ String getChoice2() {
 
 int storyNumber = 0;
 
-//TODO: Step 17 - Create a method called nextStory(), it should not have any outputs but it should have 1 input called choiceNumber which will be the choice number (int) made by the user.
 void nextStory(int choiceNumber) {
   print(choiceNumber);
   print(storyNumber);
@@ -84,11 +78,7 @@ void nextStory(int choiceNumber) {
   print(choiceNumber);
   print(storyNumber);
 }
-//TODO: Step 20 - Download the story plan here: https://drive.google.com/uc?export=download&id=1KU6EghkO9Hf2hRM0756xFHgNaZyGCou3
 
-//TODO: Step 21 - Using the story plan, update nextStory() to change the storyNumber depending on the choice made by the user. e.g. if choiceNumber was equal to 1 and the storyNumber is 0, the storyNumber should become 2.
-
-//TODO: Step 22 - In nextStory() if the storyNumber is equal to 3 or 4 or 5, that means it's the end of the game and it should call a method called restart() that resets the storyNumber to 0.
 void restart() {
   storyNumber = 0;
 }
