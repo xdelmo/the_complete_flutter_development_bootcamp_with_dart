@@ -1,11 +1,18 @@
 import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/constants.dart';
-import 'package:bmi_calculator/screens/input_page.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:flutter/material.dart';
 
 class ResultsPage extends StatelessWidget {
-  const ResultsPage({super.key});
+  const ResultsPage(
+      {super.key,
+      required this.bmiResult,
+      required this.resultText,
+      required this.interpretation});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -34,15 +41,15 @@ class ResultsPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'result',
+                      resultText.toUpperCase(),
                       style: kResultsTextStyle,
                     ),
                     Text(
-                      '18',
+                      bmiResult,
                       style: kBMITextStyle,
                     ),
                     Text(
-                      'Your BMI result is quite low, you should eat more!',
+                      interpretation,
                       style: kBodyTextStyle,
                       textAlign: TextAlign.center,
                     )
@@ -52,7 +59,7 @@ class ResultsPage extends StatelessWidget {
             ),
             BottomButton(
                 onTap: () {
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pop(context);
                 },
                 buttonTitle: "RE-CALCULATE YOUR BMI")
           ],
