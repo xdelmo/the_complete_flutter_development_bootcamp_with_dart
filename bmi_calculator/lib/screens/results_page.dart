@@ -19,6 +19,7 @@ class ResultsPage extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
+                margin: EdgeInsets.all(15.0),
                 child: Text(
                   "Your Result",
                   style: kTitleTextStyle,
