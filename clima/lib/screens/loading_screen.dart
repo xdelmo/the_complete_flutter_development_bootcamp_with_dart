@@ -9,21 +9,30 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  static const apiKey = '42ff6742f692b37d116b3c3ef1751003';
+  double? latitude;
+  double? longitude;
   @override
   initState() {
     super.initState();
     getLocation();
-    // getData();
   }
 
   void getLocation() async {
     Location location = Location();
-    await location.getCurrentLocation();
+    try {
+      await location.getCurrentLocationCheckingPermissions();
+    } catch (e) {
+      print('An error occurred: $e');
+    }
+    latitude = location.latitude;
+    longitude = location.longitude;
+    getData();
   }
 
   void getData() async {
     http.Response response = await http.get(
-        'https://samples.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22'
+        'https://api.openweathermap.org/data/3.0/onecall?lat=$latitude&lon=$longitude&appid=$apiKey'
             as Uri);
 
     if (response.statusCode == 200) {
