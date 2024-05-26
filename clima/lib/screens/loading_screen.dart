@@ -24,16 +24,17 @@ class _LoadingScreenState extends State<LoadingScreen> {
     Location location = Location();
     try {
       await location.getCurrentLocationCheckingPermissions();
-      latitude = location.latitude;
-      longitude = location.longitude;
       NetworkHelper networkHelper = NetworkHelper(Uri.parse(
-          'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$apiKey'));
+          'https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric'));
       var weatherData = await networkHelper.getData();
-      print(weatherData);
+      // print(weatherData);
 
-      Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return LocationScreen();
-      }));
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) {
+          return LocationScreen(locationWeather: weatherData);
+        }),
+      );
     } catch (e) {
       print('An error occurred: $e');
     }
