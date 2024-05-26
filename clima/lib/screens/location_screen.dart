@@ -26,10 +26,12 @@ class _LocationScreenState extends State<LocationScreen> {
   }
 
   void updateUI(dynamic weatherData) {
-    temperature = weatherData['main']['temp'].toInt();
-    cityName = weatherData['name'];
-    weatherIcon = weather.getWeatherIcon(weatherData['weather'][0]['id']);
-    weatherMessage = weather.getMessage(temperature);
+    setState(() {
+      temperature = weatherData['main']['temp'].toInt();
+      cityName = weatherData['name'];
+      weatherIcon = weather.getWeatherIcon(weatherData['weather'][0]['id']);
+      weatherMessage = weather.getMessage(temperature);
+    });
   }
 
   @override
