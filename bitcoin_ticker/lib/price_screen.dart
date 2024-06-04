@@ -11,7 +11,7 @@ class PriceScreen extends StatefulWidget {
 
 class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = 'USD';
-  var bitcoinValueInUSD = '?';
+  var bitcoinValueInCurrency = '?';
 
   @override
   initState() {
@@ -34,6 +34,7 @@ class _PriceScreenState extends State<PriceScreen> {
       items: dropdownItems,
       onChanged: (value) => {
         setState(() {
+          getData();
           selectedCurrency = value!;
           print(value);
         }),
@@ -68,10 +69,10 @@ class _PriceScreenState extends State<PriceScreen> {
 
   void getData() async {
     try {
-      double data = await CoinData().getCoinData();
-      print(data);
+      double data =
+          await CoinData(selectedCurrency: selectedCurrency).getCoinData();
       setState(() {
-        bitcoinValueInUSD = data.toStringAsFixed(2);
+        bitcoinValueInCurrency = data.toStringAsFixed(2);
       });
     } catch (e) {
       print(e);
@@ -99,7 +100,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = $bitcoinValueInUSD USD',
+                  '1 BTC = $bitcoinValueInCurrency $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
