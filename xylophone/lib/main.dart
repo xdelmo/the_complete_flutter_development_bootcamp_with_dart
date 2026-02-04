@@ -4,6 +4,8 @@ import 'package:audioplayers/audioplayers.dart';
 void main() => runApp(XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
+  const XylophoneApp({super.key});
+
   void playSound(int soundNumber) {
     final player = AudioPlayer();
     player.setSource(AssetSource('note$soundNumber.wav'));
@@ -19,7 +21,7 @@ class XylophoneApp extends StatelessWidget {
         onPressed: () {
           playSound(soundNumber);
         },
-        child: Text(''),
+        child: const Text(''),
       ),
     );
   }
@@ -32,9 +34,9 @@ class XylophoneApp extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.black,
-          title: Text('Xylophone'),
+          title: const Text('Xylophone'),
           titleTextStyle:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         body: SafeArea(
           child: Column(

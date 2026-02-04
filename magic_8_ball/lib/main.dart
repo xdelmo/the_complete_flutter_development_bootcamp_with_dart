@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() => runApp(
-      MaterialApp(
+      const MaterialApp(
         home: BallPage(),
       ),
     );
@@ -17,11 +17,11 @@ class BallPage extends StatelessWidget {
       backgroundColor: Colors.blue.shade500,
       appBar: AppBar(
         backgroundColor: Colors.blue.shade900,
-        title: Text('Ask Me Anything'),
-        titleTextStyle: TextStyle(
+        title: const Text('Ask Me Anything'),
+        titleTextStyle: const TextStyle(
             fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
       ),
-      body: Ball(),
+      body: const Ball(),
     );
   }
 }

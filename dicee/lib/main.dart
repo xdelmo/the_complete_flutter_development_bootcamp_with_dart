@@ -7,8 +7,8 @@ void main() {
       home: Scaffold(
         backgroundColor: Colors.red,
         appBar: AppBar(
-          title: Text('Dicee'),
-          titleTextStyle: TextStyle(
+          title: const Text('Dicee'),
+          titleTextStyle: const TextStyle(
             color: Colors.white,
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -16,7 +16,7 @@ void main() {
           centerTitle: true,
           backgroundColor: Colors.red,
         ),
-        body: SafeArea(
+        body: const SafeArea(
           child: DicePage(),
         ),
       ),
@@ -71,7 +71,7 @@ class _DicePageState extends State<DicePage> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 20,
               ),
               Expanded(
@@ -86,14 +86,14 @@ class _DicePageState extends State<DicePage> {
           ),
         ),
         isSameDiceFace
-            ? Text(
+            ? const Text(
                 'YOU WON!',
                 style: TextStyle(
                     letterSpacing: 10,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               )
-            : Text('')
+            : const Text('')
       ],
     );
   }

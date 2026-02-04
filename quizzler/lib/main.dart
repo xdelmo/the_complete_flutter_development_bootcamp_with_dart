@@ -4,9 +4,11 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
-void main() => runApp(Quizzler());
+void main() => runApp(const Quizzler());
 
 class Quizzler extends StatelessWidget {
+  const Quizzler({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -14,12 +16,12 @@ class Quizzler extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.black,
-          title: Text('Quizzler'),
+          title: const Text('Quizzler'),
           titleTextStyle:
-              TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         backgroundColor: Colors.grey.shade900,
-        body: SafeArea(
+        body: const SafeArea(
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 10.0),
             child: QuizPage(),
@@ -31,6 +33,8 @@ class Quizzler extends StatelessWidget {
 }
 
 class QuizPage extends StatefulWidget {
+  const QuizPage({super.key});
+
   @override
   _QuizPageState createState() => _QuizPageState();
 }
@@ -41,8 +45,8 @@ class _QuizPageState extends State<QuizPage> {
 
   Icon buildIcon(bool icon) {
     return icon
-        ? Icon(Icons.check, color: Colors.green)
-        : Icon(Icons.close, color: Colors.red);
+        ? const Icon(Icons.check, color: Colors.green)
+        : const Icon(Icons.close, color: Colors.red);
   }
 
   void _checkAnswer(bool userPickedAnswer) {
@@ -63,15 +67,15 @@ class _QuizPageState extends State<QuizPage> {
           buttons: [
             DialogButton(
               color: Colors.blue.shade500,
-              child: Text(
-                "RESTART",
-                style: TextStyle(color: Colors.white, fontSize: 10),
-              ),
               onPressed: () {
                 Navigator.pop(context);
                 _resetQuizzler();
               },
               width: 120,
+              child: const Text(
+                "RESTART",
+                style: TextStyle(color: Colors.white, fontSize: 10),
+              ),
             )
           ],
         ).show();
@@ -96,7 +100,7 @@ class _QuizPageState extends State<QuizPage> {
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
             ),
             TextButton(
@@ -106,7 +110,7 @@ class _QuizPageState extends State<QuizPage> {
               style: TextButton.styleFrom(
                 backgroundColor: Colors.red,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.restore,
                 color: Colors.white,
               ),
@@ -116,12 +120,12 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           flex: 5,
           child: Padding(
-            padding: EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(10.0),
             child: Center(
               child: Text(
                 quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
                 ),
@@ -131,43 +135,43 @@ class _QuizPageState extends State<QuizPage> {
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: TextButton(
               style: TextButton.styleFrom(
                   backgroundColor: Colors.green,
-                  textStyle: TextStyle(color: Colors.white)),
-              child: Text(
+                  textStyle: const TextStyle(color: Colors.white)),
+              onPressed: !isGameOver
+                  ? () {
+                      _checkAnswer(true);
+                    }
+                  : null,
+              child: const Text(
                 'True',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 20.0,
                 ),
               ),
-              onPressed: !isGameOver
-                  ? () {
-                      _checkAnswer(true);
-                    }
-                  : null,
             ),
           ),
         ),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(15.0),
             child: TextButton(
               style: TextButton.styleFrom(backgroundColor: Colors.red),
-              child: Text(
+              onPressed: !isGameOver
+                  ? () {
+                      _checkAnswer(false);
+                    }
+                  : null,
+              child: const Text(
                 'False',
                 style: TextStyle(
                   fontSize: 20.0,
                   color: Colors.white,
                 ),
               ),
-              onPressed: !isGameOver
-                  ? () {
-                      _checkAnswer(false);
-                    }
-                  : null,
             ),
           ),
         ),

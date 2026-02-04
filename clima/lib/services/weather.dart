@@ -22,8 +22,8 @@ class WeatherModel {
   Future<dynamic> getCityWeather(cityName) async {
     Location location = Location();
     await location.getCurrentLocationCheckingPermissions();
-    NetworkHelper networkHelper = NetworkHelper(Uri.parse(
-        '$openWeatherMapURL?q=${cityName}&appid=$apiKey&units=metric'));
+    NetworkHelper networkHelper = NetworkHelper(
+        Uri.parse('$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric'));
     return await networkHelper.getData();
   }
 

@@ -1,24 +1,26 @@
 import 'package:flutter/material.dart';
 
 class Screen0 extends StatelessWidget {
+  const Screen0({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.purple,
-        title: Text('Screen 0'),
+        title: const Text('Screen 0'),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
             ElevatedButton(
-              child: Text('Go To Screen 1'),
+              child: const Text('Go To Screen 1'),
               onPressed: () {
                 Navigator.pushNamed(context, "/first");
               },
             ),
             ElevatedButton(
-              child: Text('Go To Screen 2'),
+              child: const Text('Go To Screen 2'),
               onPressed: () {
                 Navigator.pushNamed(context, "/second");
               },

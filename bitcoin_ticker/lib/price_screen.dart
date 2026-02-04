@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'coin_data.dart';
 
 class PriceScreen extends StatefulWidget {
+  const PriceScreen({super.key});
+
   @override
   _PriceScreenState createState() => _PriceScreenState();
 }
@@ -14,8 +16,8 @@ class _PriceScreenState extends State<PriceScreen> {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String currency in currenciesList) {
       var newItem = DropdownMenuItem(
-        child: Text(currency),
         value: currency,
+        child: Text(currency),
       );
       dropdownItems.add(newItem);
     }
@@ -83,7 +85,7 @@ class _PriceScreenState extends State<PriceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('🤑 Coin Ticker'),
+        title: const Text('🤑 Coin Ticker'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -103,7 +105,7 @@ class _PriceScreenState extends State<PriceScreen> {
           Container(
             height: 150.0,
             alignment: Alignment.center,
-            padding: EdgeInsets.only(bottom: 30.0),
+            padding: const EdgeInsets.only(bottom: 30.0),
             color: Colors.lightBlue,
             child: androidDropdown(),
           ),
@@ -115,6 +117,7 @@ class _PriceScreenState extends State<PriceScreen> {
 
 class CryptoCard extends StatelessWidget {
   const CryptoCard({
+    super.key,
     required this.cryptoCurrency,
     required this.value,
     required this.selectedCurrency,
@@ -127,7 +130,7 @@ class CryptoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
+      padding: const EdgeInsets.fromLTRB(18.0, 18.0, 18.0, 0),
       child: Card(
         color: Colors.lightBlueAccent,
         elevation: 5.0,
@@ -135,11 +138,11 @@ class CryptoCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
+          padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
           child: Text(
             '1 $cryptoCurrency = $value $selectedCurrency',
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20.0,
               color: Colors.white,
             ),
