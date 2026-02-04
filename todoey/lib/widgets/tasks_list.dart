@@ -12,7 +12,7 @@ class TasksList extends StatelessWidget {
         left: 25.0,
         right: 25.0,
       ),
-      children: <Widget>[
+      children: const <Widget>[
         TaskTile(),
         TaskTile(),
         TaskTile(),
