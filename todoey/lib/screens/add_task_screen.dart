@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/models/task_data.dart';
 
 class AddTaskScreen extends StatefulWidget {
-  const AddTaskScreen({super.key, required this.addTaskCallback});
+  const AddTaskScreen({super.key});
 
-  final Function addTaskCallback;
   @override
   State<AddTaskScreen> createState() => _AddTaskScreenState();
 }
@@ -45,7 +46,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             MaterialButton(
               color: Colors.lightBlueAccent,
               onPressed: () {
-                widget.addTaskCallback(newTaskTitle);
+                Provider.of<TaskData>(context, listen: false)
+                    .addTask(newTaskTitle);
+                Navigator.pop(context);
               },
               child: const Text(
                 "Add",
